@@ -9,12 +9,14 @@ from .serializers import *
 class CategoryView(APIView):
     def get(self,request, *args, **kwargs):
         category = Category.objects.all()
-        serializer = CategorySerializers(category, many=True)
+        serializer = CategorySerializer(category, many=True)
         return Response(serializer.data)
 
-    def post(self,request,*args,**kwargs):
-        serializer = CategorySerializers(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response({"data": "category create succesfully!"})
-        return Response(serializer.errors)
+
+class MealView(APIView):
+    def get(self,request,*args,**kwargs):
+        category = Category.objects.get(id=kwargs['category_id'])
+        serializer = CategoryDetailSerializer(category)
+        return Response(serializer.data)
+
+
