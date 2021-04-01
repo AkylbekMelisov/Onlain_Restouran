@@ -23,3 +23,13 @@ class MealToOrder(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     meal = models.ForeignKey(Meal, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
+
+
+class Worker(models.Model):
+    name = models.CharField(max_length=50)
+    age = models.PositiveIntegerField(default=0)
+    salary = models.IntegerField()
+    position = models.CharField(max_length=50)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    order_count = models.IntegerField()
