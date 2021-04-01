@@ -18,3 +18,10 @@ class OrderView(APIView):
             serializer.save()
             return Response({"data": "Order create successfully"})
         return Response(serializer.errors)
+
+
+class WorkerView(APIView):
+    def get(self, request, *args, **kwargs):
+        worker = Worker.objects.all()
+        serializer = WorkerSerialiser(worker, many=True)
+        return Response(serializer.data)
