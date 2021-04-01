@@ -29,3 +29,9 @@ class OrderSerializer(serializers.ModelSerializer):
         for mt in mto:
             total_price += mt.meal.price * mt.quantity
         return total_price
+
+
+class WorkerSerialiser(serializers.ModelSerializer):
+    class Meta:
+        model = Worker
+        fields = '__all__'
