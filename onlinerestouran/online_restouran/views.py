@@ -16,7 +16,7 @@ class CategoryView(APIView):
 class MealView(APIView):
     def get(self,request,*args,**kwargs):
         category = Category.objects.get(id=kwargs['category_id'])
-        serializer = CategoryDetailSerializer(category)
+        serializer = CategoryDetailSerializer(category, many=True)
         return Response(serializer.data)
 
 
